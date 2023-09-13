@@ -1,42 +1,19 @@
 import Koa from 'koa';
-import logger from 'koa-logger';
-import router from './routes/index.js';
-// import swagger from './swagger.js';
 import swaggerJsdoc from 'swagger-jsdoc';
 import { koaSwagger } from 'koa2-swagger-ui';
-import fs from 'fs';
 
 const app = new Koa();
 
-/* setup middlewares */
-app.proxy = true;
-// logger
-app.use(logger());
-// router
-app.use(router.routes()).use(router.allowedMethods());
-
-const { version } = JSON.parse(fs.readFileSync('./package.json'));
 app.use((ctx, next) => {
+    console.log(ctx.path);
     if (ctx.path === '/api/v2/docs.json') {
         const swaggerSpec = swaggerJsdoc({
-            failOnErrors: true,
             definition: {
-                openapi: '3.1.0',
+                openapi: '3.0.0',
                 info: {
-                    title: 'KLOG API DOCS',
-                    description: 'This page is api-docs for KLOG.',
-                    // termsOfService: 'https://www.klasis.com/terms',
-                    // contact: {
-                    //     name: 'API Support',
-                    //     url: 'https://www.klasis.com/support',
-                    //     email: 'support@klasis.com'
-                    // },
-                    // license: {
-                    //     name: "MIT License",
-                    //     identifier: 'MIT-License',
-                    //     url: "https://www.klasis.com/licenses"
-                    // },
-                    version: version
+                    title: 'Title1',
+                    version: '1.0.0',
+                    description: 'Description1'
                 }
             },
             apis: [
@@ -46,9 +23,12 @@ app.use((ctx, next) => {
                 './routes/**/**/**/*.js'
             ]
         });
+        console.log(swaggerSpec);
 
         ctx.set('Content-Type', 'application/json');
         ctx.body = swaggerSpec;
+
+        return;
     }
 
     return next();
@@ -56,7 +36,7 @@ app.use((ctx, next) => {
 
 app.use(
     koaSwagger({
-        title: 'KLOG - API DOCS',
+        title: 'page title',
         oauthOptions: {},
         swaggerOptions: {
             url: '/api/v2/docs.json',
@@ -71,10 +51,13 @@ app.use(
         routePrefix: '/api/docs',
         specPrefix: '',
         exposeSpec: false,
-        hideTopbar: true,
+        hideTopbar: false,
         // favicon: '/favicon.png',
         // customCSS: ``
     })
 );
 
-export default app;
+function swagger() {
+}
+
+export default swagger;
