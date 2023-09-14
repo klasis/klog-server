@@ -1,7 +1,9 @@
 {
-  "name": "klog",
+  "name": "klog-server",
   "version": "1.0.0",
   "type": "module",
+  "author": "klasis <klasis137@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@koa/router": "^12.0.0",
     "dotenv": "^16.3.1",
