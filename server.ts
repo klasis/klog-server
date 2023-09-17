@@ -1,5 +1,6 @@
 import './env';
 import app from './app';
+import './db/db';
 // import { startClosing } from './lib/middlewares/keepAlive';
 // import http from 'http';
 
