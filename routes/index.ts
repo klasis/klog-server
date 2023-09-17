@@ -1,5 +1,5 @@
 import Router from '@koa/router';
-import api from './api/index.js';
+import api from './api';
 
 const router = new Router();
 
@@ -40,7 +40,7 @@ router.use('/api', api.routes());
  *             schema:
  *               type: integer
  */
-router.get('/', (ctx, next) => {
+router.get('/', ctx => {
     ctx.body = {
         message: 'hello world'
     };

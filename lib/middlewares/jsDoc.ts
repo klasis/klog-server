@@ -1,7 +1,8 @@
+import { Middleware } from 'koa';
 import swaggerJsdoc from "swagger-jsdoc";
 import fs from 'fs';
 
-const { version } = JSON.parse(fs.readFileSync('./package.json'));
+// const version = JSON.parse(fs.readFileSync('./package.json'));
 
 const jsDocOptions = {
     failOnErrors: true,
@@ -21,26 +22,24 @@ const jsDocOptions = {
             //     identifier: 'MIT-License',
             //     url: "https://www.klasis.com/licenses"
             // },
-            version: version
+            version: '1.0.0'
         }
     },
     apis: [
-        './routes/*.js',
-        './routes/**/*.js',
-        './routes/**/**/*.js',
-        './routes/**/**/**/*.js'
+        './routes/*.ts',
+        './routes/**/*.ts',
+        './routes/**/**/*.ts',
+        './routes/**/**/**/*.ts'
     ]
 }
 
-export default () => {
-    return function jsDocs(ctx, next) {
-        if (ctx.path === '/api/v1/docs.json') {
-            const swaggerSpec = swaggerJsdoc(jsDocOptions);
+export const jsDoc: Middleware = (ctx, next) => {
+    if (ctx.path === '/api/v1/docs.json') {
+        const swaggerSpec = swaggerJsdoc(jsDocOptions);
 
-            ctx.set('Content-Type', 'application/json');
-            ctx.body = swaggerSpec;
-        }
-
-        return next();
+        ctx.set('Content-Type', 'application/json');
+        ctx.body = swaggerSpec;
     }
-}
+
+    return next();
+};

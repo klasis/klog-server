@@ -1,5 +1,5 @@
 import Router from '@koa/router';
-import v1 from './v1/index.js';
+import v1 from './v1';
 
 const api = new Router();
 

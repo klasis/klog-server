@@ -1,5 +1,5 @@
-import './env.js';
-import app from './app.js';
+import './env';
+import app from './app';
 // import { startClosing } from './lib/middlewares/keepAlive';
 // import http from 'http';
 
