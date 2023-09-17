@@ -6,3 +6,4 @@ this service will support Korean language only.
 ## Project Stack
 - Node.js (v18.17.1)
 - Koa (v2.14.2)
+- TypeScript (v.5.2.2)
