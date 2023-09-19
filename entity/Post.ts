@@ -1,16 +1,28 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {Entity, PrimaryGeneratedColumn, Column, Index, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export default class Post {
-    @PrimaryGeneratedColumn()
-    id!: number
+    @PrimaryGeneratedColumn('uuid')
+    id!: string;
 
     @Column()
-    title!: string
+    title!: string;
 
     @Column()
-    description!: string
+    description!: string;
 
     @Column()
-    body!: string
+    body!: string;
+
+    @Index()
+    @Column('timestamptz')
+    released_at!: Date;
+
+    @Column('timestamptz')
+    @CreateDateColumn()
+    created_at!: Date;
+
+    @Column('timestamptz')
+    @UpdateDateColumn()
+    updated_at!: Date;
 }
