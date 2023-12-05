@@ -7,7 +7,7 @@ const router = express.Router();
 dotenv.config();
 const indexEnv = process.env;
 
-const User = require(`../models/${ indexEnv.USE_DB }/User.ts`);
+const User = require(`../models/${ indexEnv.USE_DB }/users.ts`);
 
 router.get('/', (req: Request, res: Response) => {
     const user = new User({

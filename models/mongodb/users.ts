@@ -10,6 +10,6 @@ const userSchema = new Schema<IUser> ({
     email: { type: String, required: true }
 });
 
-const User = model<IUser> ('users', userSchema);
+const Users = model<IUser> ('users', userSchema);
 
-module.exports = User;
+module.exports = Users;
